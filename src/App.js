@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import BeastEdit from './components/BeastEdit'
+import BeastIndex from './components/BeastIndex'
+import BeastNew from './components/BeastNew'
+import BeastShow from './components/BeastShow'
+import Home from './components/Home'
+import NotFound from './components/NotFound'
+import './App.css'
+import { Routes, Route } from "react-router-dom"
+import mockBeasts from './mockBeasts'
 
-function App() {
+
+const App = () => {
+  const [beasts, setBeasts] = useState(mockBeasts)
+  console.log(beasts)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <> <Header/>
+    <Routes>
+    <Route path="/" element={<Home />} />
+      <Route path="/beastindex" element={<BeastIndex />} />
+      <Route path="/beastshow" element={<BeastShow />} />
+      <Route path="/beastnew" element={<BeastNew />} />
+      <Route path="/beastedit" element={<BeastEdit />} />
+      <Route path="*" element={<NotFound />} />
+      </Routes>
+      <Footer/>
+      
+    </>
+  )
 }
 
-export default App;
+export default App

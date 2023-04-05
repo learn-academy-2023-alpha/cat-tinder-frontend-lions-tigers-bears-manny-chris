@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
-import logo from '../assets/logo1.png'
-import {
+import React, {useState} from 'react';
+import logo from '../assets/logo1.png';
+import { 
     Collapse,
     Navbar,
     NavbarToggler,
@@ -42,9 +42,7 @@ const toggle = () => setIsOpen(!isOpen);
               <NavLink href="/beastindex">Hunt</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/beastshow">
-                Attack
-              </NavLink>
+              <NavLink href="/beastshow">Attack</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/beastnew">Expand</NavLink>
@@ -57,9 +55,6 @@ const toggle = () => setIsOpen(!isOpen);
          
         </Collapse>
       </Navbar>
-
-
-
     </div>
   )
 }

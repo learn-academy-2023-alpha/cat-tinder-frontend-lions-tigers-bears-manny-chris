@@ -14,7 +14,7 @@ import mockBeasts from './mockBeasts'
 
 const App = () => {
   const [beasts, setBeasts] = useState(mockBeasts)
-  console.log(beasts)
+
   return (
     <> <Header/>
     <Routes>
@@ -26,7 +26,6 @@ const App = () => {
       <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer/>
-      
     </>
   )
 }

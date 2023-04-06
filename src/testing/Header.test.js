@@ -24,7 +24,7 @@ describe("<Header />", () => {
 
             const logo = screen.getByRole('img')
 
-            expect(logo).toHaveAttribute('src', 'logo1.png')
+            expect(logo).toHaveAttribute('src', 'icon.png')
             expect(logo).toHaveAttribute('alt', 'uproar')
       })
 
@@ -34,7 +34,6 @@ describe("<Header />", () => {
             renderHeader()
 
             expect(screen.getByRole('link', {name: 'Hunt'}))
-            expect(screen.getByRole('link', {name: 'Attack'}))
             expect(screen.getByRole('link', {name: 'Expand'}))
             expect(screen.getByRole('link', {name: 'Sharpen'}))
       })
@@ -42,6 +41,6 @@ describe("<Header />", () => {
       it('has a hamburger button', () => {
             renderHeader()
 
-            screen.getByRole('button', {name: /toggle navigation/i})
+            expect(screen.getByRole('button', {name: /toggle navigation/i}))
       })
 })

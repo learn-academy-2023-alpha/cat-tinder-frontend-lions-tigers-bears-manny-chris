@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import BeastEdit from './components/BeastEdit'
@@ -17,17 +17,17 @@ const App = () => {
 
   return (
     <>
-      <Header/>
+      <Header />
       <div className='pageContainer'>
-            <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/beastindex" element={<BeastIndex beasts={beasts}/>} />
-                  <Route path="/beastshow/:id" element={<BeastShow beasts={beasts}/>} />
-                  <Route path="/beastnew" element={<BeastNew />} />
-                  <Route path="/beastedit" element={<BeastEdit />} />
-                  <Route path="*" element={<NotFound />} />
-            </Routes>
-            <Footer/>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/beastindex" element={<BeastIndex beasts={beasts} />} />
+          <Route path="/beastshow/:id" element={<BeastShow beasts={beasts} />} />
+          <Route path="/beastnew" element={<BeastNew />} />
+          <Route path="/beastedit" element={<BeastEdit />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
       </div>
     </>
   )

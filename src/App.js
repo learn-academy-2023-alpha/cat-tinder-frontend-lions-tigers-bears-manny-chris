@@ -14,19 +14,19 @@ import mockBeasts from './mockBeasts'
 
 const App = () => {
   const [beasts, setBeasts] = useState(mockBeasts)
-  console.log(beasts)
+
   return (
-    <> <Header/>
-    <Routes>
-    <Route path="/" element={<Home />} />
-      <Route path="/beastindex" element={<BeastIndex />} />
-      <Route path="/beastshow" element={<BeastShow />} />
-      <Route path="/beastnew" element={<BeastNew />} />
-      <Route path="/beastedit" element={<BeastEdit />} />
-      <Route path="*" element={<NotFound />} />
+    <>
+      <Header/>
+      <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/beastindex" element={<BeastIndex />} />
+            <Route path="/beastshow" element={<BeastShow />} />
+            <Route path="/beastnew" element={<BeastNew />} />
+            <Route path="/beastedit" element={<BeastEdit />} />
+            <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer/>
-      
     </>
   )
 }

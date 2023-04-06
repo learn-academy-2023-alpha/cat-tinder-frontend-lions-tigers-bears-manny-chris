@@ -2,7 +2,7 @@ import React from 'react'
 
 const BeastEdit = () => {
   return (
-    <div>BeastEdit</div>
+    <div className='content'>BeastEdit</div>
   )
 }
 

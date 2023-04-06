@@ -35,9 +35,6 @@ const toggle = () => setIsOpen(!isOpen);
                               <NavLink href="/beastindex">Hunt</NavLink>
                         </NavItem>
                         <NavItem>
-                              <NavLink href="/beastshow">Attack</NavLink>
-                        </NavItem>
-                        <NavItem>
                               <NavLink href="/beastnew">Expand</NavLink>
                         </NavItem>
                         <NavItem>

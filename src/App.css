@@ -9,8 +9,8 @@
 
 * {
       font-family: 'Lato', sans-serif;
-     
 }
+
 body{
       background-color: var(--root-color);
 }
@@ -28,27 +28,6 @@ body{
       border: solid 2px var(--mid-color);
       border-radius: 1em;
       background-color: var(--low-color);
-
-}
-
-.navbar-brand {
-      background-color: var(--low-color);
-}
-
-.logo {
-      background-color: var(--low-color);
-}
-
-.container-fluid {
-      background-color: var(--low-color);
-}
-
-.navbar-text {
-      background-color: var(--low-color);
-}
-
-.navbar-toggler-icon {
-      background-color: var(--low-color);
 }
 
 .hamburger {
@@ -61,36 +40,54 @@ body{
       border: solid 2px var(--high-color)
 }
 
-.nav-link {
-      background-color: var(--low-color);
+/* Content formatting */
+.pageContainer {
+      max-width: 100vw;
+      min-height: 96.5vh;
+      position: relative;
 }
 
-/* Content formatting */
 .content {
       max-width: 100vw;
-      min-height: 95.5vh;
+      min-height: 96.5vh;
       height: auto;
       padding-top: 4.5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-bottom: 2.5rem;
       background-color: var(--root-color);
 }
+
+.cardViewer {
+      display: flex;
+      gap: 1em;
+      flex-wrap: wrap;
+}
+
+.card-body {
+      background-color: var(--low-color);
+      border: solid 2px var(--mid-color)
+}
+
+.btn.btn-secondary {
+      background-color: var(--high-color);
+}
+
+.btn.btn-secondary:hover {
+      background-color: var(--accent-color);
+}
+
 .carousel-item{
       width: 100vw;
       height: auto;
-     
-      
 }
-
 
 .carousel-item > img{
       object-fit: contain;
       width: 100vw;
       height: auto;
       max-height: 85vh;
-      
 }
-
-
-
 
 .notFound {
       object-fit: contain;
@@ -107,6 +104,7 @@ body{
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
+      padding-left: 2rem;
       gap: 3em;
       background-color: var(--root-color);
 }

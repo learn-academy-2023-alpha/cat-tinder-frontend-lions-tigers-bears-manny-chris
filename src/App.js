@@ -18,15 +18,17 @@ const App = () => {
   return (
     <>
       <Header/>
-      <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/beastindex" element={<BeastIndex index={beasts.id} beasts={beasts}/>} />
-            <Route path="/beastshow" element={<BeastShow />} />
-            <Route path="/beastnew" element={<BeastNew />} />
-            <Route path="/beastedit" element={<BeastEdit />} />
-            <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Footer/>
+      <div className='pageContainer'>
+            <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/beastindex" element={<BeastIndex beasts={beasts}/>} />
+                  <Route path="/beastshow/:id" element={<BeastShow beasts={beasts}/>} />
+                  <Route path="/beastnew" element={<BeastNew />} />
+                  <Route path="/beastedit" element={<BeastEdit />} />
+                  <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer/>
+      </div>
     </>
   )
 }

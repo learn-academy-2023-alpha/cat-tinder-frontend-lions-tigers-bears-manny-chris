@@ -18,7 +18,6 @@ describe("<Home />", () => {
             renderHome()
       })
 
-
       it('displays text home', () => {
             renderHome()
 

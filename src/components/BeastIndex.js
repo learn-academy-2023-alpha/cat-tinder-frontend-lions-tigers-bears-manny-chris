@@ -1,84 +1,52 @@
-import React, {useState} from 'react'
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
-} from 'reactstrap';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap'
 
 
 const BeastIndex = ({beasts}) => {
-  console.log(beasts)
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
+      const navigate = useNavigate()
 
-  const next = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === beasts.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  };
+      const attackBeast = (e) =>{
+            navigate(`/beastshow/${e.target.key}`)
+      }
 
-  const previous = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === 0 ? beasts.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  };
+      const [cards, setCards] = useState(beasts.map((beast, index) => {
+            return (
+                  <Card style={{width: '18rem'}} key={index}>
+                        <img
+                              alt={beast.name}
+                              src={beast.image}
+                        />
+                        <CardBody>
+                              <CardTitle tag="h5">
+                                    {beast.name}
+                              </CardTitle>
+                              <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                              >
+                                    {beast.age}
+                              </CardSubtitle>
+                              <CardText>
+                                    {beast.description}
+                              </CardText>
+                              <Button onClick={attackBeast} key={beast.id}>
+                                    Attack
+                              </Button>
+                        </CardBody>
+                  </Card>
+      )}))
 
-  const goToIndex = (newIndex) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
-  };
-  const slides = beasts?.map((beast) => {
-    
-    return (
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={beast.id}
-      >
-        <img src={beast.image} alt={beast.name} />
-        <CarouselCaption
-          captionText={beast.description}
-          captionHeader={beast.name}
-        />
-      </CarouselItem>
-    );
-  });
-
-  return (
-   <>
-    <div className='content'>
-      <h2>Meet your beast</h2>
-     {slides}
-      <Carousel
-      activeIndex={activeIndex}
-      next={next}
-      previous={previous}
-      interval={false}
-      {...beasts}
-    >
-      <CarouselIndicators
-        items={beasts}
-        activeIndex={activeIndex}
-        onClickHandler={goToIndex}
-      />
-      {slides}
-      <CarouselControl
-        direction="prev"
-        directionText="Previous"
-        onClickHandler={previous}
-      />
-      <CarouselControl
-        direction="next"
-        directionText="Next"
-        onClickHandler={next}
-      />
-    </Carousel>
-
-    </div>
-    </>
-  )
+      return (
+            <>
+            <div className='content'>
+                  <h2>Meet your beast</h2>
+                  <div className='cardViewer'>
+                        {cards}
+                  </div>
+            </div>
+            </>
+      )
 }
 
 export default BeastIndex

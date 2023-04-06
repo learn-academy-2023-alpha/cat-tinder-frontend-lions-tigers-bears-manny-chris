@@ -9,6 +9,9 @@
 
 * {
       font-family: 'Lato', sans-serif;
+     
+}
+body{
       background-color: var(--root-color);
 }
 
@@ -17,12 +20,15 @@
       position: fixed;
       top: 0;
       width: 100vw;
+      background-color: var(--root-color);
+      z-index: 1000;
 }
 
 .navbar {
       border: solid 2px var(--mid-color);
       border-radius: 1em;
       background-color: var(--low-color);
+
 }
 
 .navbar-brand {
@@ -62,9 +68,29 @@
 /* Content formatting */
 .content {
       max-width: 100vw;
+      min-height: 95.5vh;
       height: auto;
       padding-top: 4.5rem;
+      background-color: var(--root-color);
 }
+.carousel-item{
+      width: 100vw;
+      height: auto;
+     
+      
+}
+
+
+.carousel-item > img{
+      object-fit: contain;
+      width: 100vw;
+      height: auto;
+      max-height: 85vh;
+      
+}
+
+
+
 
 .notFound {
       object-fit: contain;
@@ -82,4 +108,5 @@
       flex-direction: row;
       justify-content: flex-start;
       gap: 3em;
+      background-color: var(--root-color);
 }

@@ -20,7 +20,7 @@ const App = () => {
       <Header/>
       <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/beastindex" element={<BeastIndex />} />
+            <Route path="/beastindex" element={<BeastIndex index={beasts.id} beasts={beasts}/>} />
             <Route path="/beastshow" element={<BeastShow />} />
             <Route path="/beastnew" element={<BeastNew />} />
             <Route path="/beastedit" element={<BeastEdit />} />

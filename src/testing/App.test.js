@@ -3,9 +3,9 @@ import App from '../App';
 import { Routes, Route, BrowserRouter } from "react-router-dom"
 
 test('App renders without issue', () => {
-      render(
-            <BrowserRouter>
-                  <App />
-            </BrowserRouter>
-      )
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  )
 })

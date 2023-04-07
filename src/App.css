@@ -90,6 +90,11 @@ body {
   max-height: 85vh;
 }
 
+.showMutateButton {
+  display: flex;
+  justify-content: center;
+}
+
 .notFound {
   object-fit: contain;
   max-width: 100vw;

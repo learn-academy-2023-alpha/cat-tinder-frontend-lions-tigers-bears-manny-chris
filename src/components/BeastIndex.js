@@ -9,40 +9,46 @@ const BeastIndex = ({ beasts }) => {
     navigate(`/beastshow/${e.target.id}`)
   }
 
-  const [cards, setCards] = useState(beasts.map((beast, index) => {
-    return (
-      <Card style={{ width: '18rem' }} key={index}>
-        <img
-          alt={beast.name}
-          src={beast.image}
-        />
-        <CardBody>
-          <CardTitle tag="h5">
-            {beast.name}
-          </CardTitle>
-          <CardSubtitle
-            className="mb-2 text-muted"
-            tag="h6"
-          >
-            {beast.age}
-          </CardSubtitle>
-          <CardText>
-            {beast.description}
-          </CardText>
-          <Button onClick={attackBeast} id={beast.id}>
-            Attack
-          </Button>
-        </CardBody>
-      </Card>
-    )
-  }))
+  const mutateBeast = (e) => {
+    navigate(`/beastedit/${e.target.id}`)
+  }
 
   return (
     <>
       <div className='content'>
         <h2>Meet your beast</h2>
         <div className='cardViewer'>
-          {cards}
+          {beasts.map((beast, index) => {
+            console.log({ index: beast })
+            return (
+              <Card style={{ width: '18rem' }} key={index}>
+                <img
+                  alt={beast.name}
+                  src={beast.image}
+                />
+                <CardBody>
+                  <CardTitle tag="h5">
+                    {beast.name}
+                  </CardTitle>
+                  <CardSubtitle
+                    className="mb-2 text-muted"
+                    tag="h6"
+                  >
+                    {beast.age}
+                  </CardSubtitle>
+                  <CardText>
+                    {beast.description}
+                  </CardText>
+                  <Button onClick={attackBeast} id={beast.id}>
+                    Attack
+                  </Button>
+                  <Button onClick={mutateBeast} id={beast.id}>
+                    Mutate
+                  </Button>
+                </CardBody>
+              </Card>
+            )
+          })}
         </div>
       </div>
     </>

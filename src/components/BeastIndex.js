@@ -9,6 +9,10 @@ const BeastIndex = ({ beasts }) => {
     navigate(`/beastshow/${e.target.id}`)
   }
 
+  const mutateBeast = (e) => {
+    navigate(`/beastedit/${e.target.id}`)
+  }
+
   return (
     <>
       <div className='content'>
@@ -37,6 +41,9 @@ const BeastIndex = ({ beasts }) => {
                   </CardText>
                   <Button onClick={attackBeast} id={beast.id}>
                     Attack
+                  </Button>
+                  <Button onClick={mutateBeast} id={beast.id}>
+                    Mutate
                   </Button>
                 </CardBody>
               </Card>

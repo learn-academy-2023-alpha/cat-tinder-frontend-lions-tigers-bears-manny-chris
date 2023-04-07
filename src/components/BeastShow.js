@@ -6,6 +6,7 @@ import {
   CarouselControl,
   CarouselIndicators,
   CarouselCaption,
+  Button
 } from 'reactstrap'
 
 const BeastShow = ({ beasts }) => {
@@ -34,9 +35,12 @@ const BeastShow = ({ beasts }) => {
     if (animating) return
     setActiveIndex(newIndex)
   }
-  
-  const slides = beasts?.map((beast) => {
 
+  const mutateBeast = (e) => {
+    navigate(`/beastedit/${activeIndex + 1}`)
+  }
+
+  const slides = beasts?.map((beast) => {
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
@@ -80,7 +84,11 @@ const BeastShow = ({ beasts }) => {
             onClickHandler={next}
           />
         </Carousel>
-
+        <div className='showMutateButton'>
+        <Button onClick={mutateBeast}>
+          Mutate
+        </Button>
+        </div>
       </div>
     </>
   )

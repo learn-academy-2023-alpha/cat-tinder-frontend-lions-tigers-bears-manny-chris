@@ -11,8 +11,21 @@ import './App.css'
 import { Routes, Route } from "react-router-dom"
 
 const App = () => {
-
   const [beasts, setBeasts] = useState([])
+
+  useEffect(() => {
+    readBeast()
+  }, [])
+
+  const readBeast = () => {
+    fetch("http://localhost:3000/beasts")
+      .then((response) => response.json())
+      .then((payload) => {
+        setBeasts(payload)
+        console.log({fetch: payload})
+      })
+      .catch((error) => console.log(error))
+  }
 
   const createBeast = (beast) => {
     fetch("http://localhost:3000/beasts", {
@@ -30,18 +43,8 @@ const App = () => {
       .catch((errors) => console.log("Spawning errors:", errors))
   }
 
-  useEffect(() => {
-    readBeast()
-  }, [])
-
-  const readBeast = () => {
-    fetch("http://localhost:3000/beasts")
-      .then((response) => response.json())
-      .then((payload) => {
-        setBeasts(payload)
-        console.log({fetch: payload})
-      })
-      .catch((error) => console.log(error))
+  const editBeast = (beast) => {
+    console.log(beast)
   }
 
   return (
@@ -53,7 +56,7 @@ const App = () => {
           <Route path="/beastindex" element={<BeastIndex beasts={beasts} />} />
           <Route path="/beastshow/:id" element={<BeastShow beasts={beasts} />} />
           <Route path="/beastnew" element={<BeastNew createBeast={createBeast} />} />
-          <Route path="/beastedit" element={<BeastEdit />} />
+          <Route path="/beastedit/:id" element={<BeastEdit editBeast={editBeast} beasts={beasts}/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

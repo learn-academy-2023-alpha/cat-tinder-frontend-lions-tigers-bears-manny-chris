@@ -11,10 +11,14 @@ import './App.css'
 import { Routes, Route } from "react-router-dom"
 import mockBeasts from './mockBeasts'
 
-
 const App = () => {
+
   const [beasts, setBeasts] = useState(mockBeasts)
 
+  const createBeast = (beast) => {
+    let tempBeasts = [...beasts, beast]
+    setBeasts(tempBeasts)
+  }
   return (
     <>
       <Header />
@@ -23,7 +27,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/beastindex" element={<BeastIndex beasts={beasts} />} />
           <Route path="/beastshow/:id" element={<BeastShow beasts={beasts} />} />
-          <Route path="/beastnew" element={<BeastNew />} />
+          <Route path="/beastnew" element={<BeastNew createBeast={createBeast} />} />
           <Route path="/beastedit" element={<BeastEdit />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

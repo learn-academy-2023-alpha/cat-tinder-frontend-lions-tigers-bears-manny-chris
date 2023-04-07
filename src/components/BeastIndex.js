@@ -6,7 +6,7 @@ const BeastIndex = ({ beasts }) => {
   const navigate = useNavigate()
 
   const attackBeast = (e) => {
-    navigate(`/beastshow/${e.target.key}`)
+    navigate(`/beastshow/${e.target.id}`)
   }
 
   const [cards, setCards] = useState(beasts.map((beast, index) => {
@@ -29,7 +29,7 @@ const BeastIndex = ({ beasts }) => {
           <CardText>
             {beast.description}
           </CardText>
-          <Button onClick={attackBeast} key={beast.id}>
+          <Button onClick={attackBeast} id={beast.id}>
             Attack
           </Button>
         </CardBody>

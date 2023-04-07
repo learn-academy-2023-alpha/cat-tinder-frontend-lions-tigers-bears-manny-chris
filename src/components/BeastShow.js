@@ -13,7 +13,7 @@ const BeastShow = ({ beasts }) => {
 
   // Check if beast is good ? use the beast : redirect to not found
   const { id } = useParams()
-  let currentBeast = -1 == beasts.find((beast) => beast.id === +id) ? navigate('/notfound') : beasts.find((beast) => beast.id === +id)
+  let currentBeast = -1 === beasts.find((beast) => beast.id === +id) ? navigate('/notfound') : beasts.find((beast) => beast.id === +id)
 
   const [activeIndex, setActiveIndex] = useState(currentBeast.id - 1)
   const [animating, setAnimating] = useState(false)
@@ -22,18 +22,19 @@ const BeastShow = ({ beasts }) => {
     if (animating) return
     const nextIndex = activeIndex === beasts.length - 1 ? 0 : activeIndex + 1
     setActiveIndex(nextIndex)
-  };
+  }
 
   const previous = () => {
     if (animating) return
     const nextIndex = activeIndex === 0 ? beasts.length - 1 : activeIndex - 1
     setActiveIndex(nextIndex)
-  };
+  }
 
   const goToIndex = (newIndex) => {
     if (animating) return
     setActiveIndex(newIndex)
-  };
+  }
+  
   const slides = beasts?.map((beast) => {
 
     return (

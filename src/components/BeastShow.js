@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ModalComponent from './ModalComponent'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
   Carousel,
@@ -7,7 +6,7 @@ import {
   CarouselControl,
   CarouselIndicators,
   CarouselCaption,
-  Button,
+  Button, Modal, ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap'
 
 const BeastShow = ({ beasts, deleteBeast }) => {
@@ -44,15 +43,27 @@ const BeastShow = ({ beasts, deleteBeast }) => {
     setCurrentBeast(beasts[newIndex])
   }
 
+  const toggle = () => {
+    setShowModal(!showModal)
+  }
+  const cancel = () => {
+    setConfirmDelete(false)
+    toggle()
+  }
+  const confirm = () => {
+    setConfirmDelete(true)
+    deleteBeast(currentBeast.id)
+    navigate('/beastindex')
+    toggle()
+  }
+
   const mutateBeast = (e) => {
     navigate(`/beastedit/${beasts[activeIndex].id}`)
   }
 
-  const eliminateBeast = () => {
-    // setShowModal(true)
-
-    deleteBeast(currentBeast.id)
-    navigate('/beastindex')
+  const eliminateBeast = (e) => {
+    setShowModal(true)
+    console.log(showModal)
   }
 
   const slides = beasts?.map((beast) => {
@@ -108,13 +119,18 @@ const BeastShow = ({ beasts, deleteBeast }) => {
           </Button>
         </div>
       </div>
-      {/* Conditional rendering of a ModalComponent - does not function/pending update */}
-      {<ModalComponent
-        beastName={currentBeast.name}
-        showModal={showModal}
-        setShowModal={setShowModal}
-        setConfirmDelete={setConfirmDelete}
-      /> && showModal}
+      <Modal className="modalContent" isOpen={showModal} toggle={toggle} backdrop="static" centered>
+        <ModalHeader className="modalHeader" toggle={toggle}>
+          {`Warning!!!`}
+        </ModalHeader>
+        <ModalBody className="modalBody">
+          Are you sure you would like to delete {currentBeast.name}?
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={confirm} color='success'>Confirm</Button>
+          <Button onClick={cancel} color='danger'>Cancel</Button>
+        </ModalFooter>
+      </Modal>
     </>
   )
 }

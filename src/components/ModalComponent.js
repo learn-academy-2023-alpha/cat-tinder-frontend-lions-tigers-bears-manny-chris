@@ -27,7 +27,6 @@ const ModalComponent = ({ beastName, showModal, setShowModal, setConfirmDelete }
         <Button onClick={cancel}>Cancel</Button>
       </ModalFooter>
     </Modal>
-
   </>)
 }
 

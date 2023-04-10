@@ -59,6 +59,13 @@ body {
   background-color: var(--root-color);
 }
 
+.homeImage{
+  max-height: 80vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .cardViewer {
   display: flex;
   gap: 1em;
@@ -114,3 +121,5 @@ body {
   gap: 3em;
   background-color: var(--root-color);
 }
+
+.show { opacity: 1; }

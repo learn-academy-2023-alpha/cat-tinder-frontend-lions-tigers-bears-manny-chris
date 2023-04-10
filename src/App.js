@@ -10,7 +10,6 @@ import NotFound from './components/NotFound'
 import './App.css'
 import { Routes, Route } from "react-router-dom"
 
-
 const App = () => {
   const [beasts, setBeasts] = useState([])
 
@@ -58,6 +57,7 @@ const App = () => {
       .then((payload) => readBeast())
       .catch((errors) => console.log("Beast update errors:", errors))
   }
+
   const deleteBeast = (id) => {
     fetch(`http://localhost:3000/beasts/${id}`, {
       headers: {
@@ -79,7 +79,7 @@ const App = () => {
           <Route path="/beastindex" element={<BeastIndex beasts={beasts} />} />
           <Route path="/beastshow/:id" element={<BeastShow beasts={beasts} deleteBeast={deleteBeast} />} />
           <Route path="/beastnew" element={<BeastNew createBeast={createBeast} />} />
-          <Route path="/beastedit/:id" element={<BeastEdit editBeast={editBeast} beasts={beasts}/>} />
+          <Route path="/beastedit/:id" element={<BeastEdit editBeast={editBeast} beasts={beasts} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

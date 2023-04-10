@@ -7,24 +7,22 @@ import {
   CarouselControl,
   CarouselIndicators,
   CarouselCaption,
-  Button, 
+  Button,
 } from 'reactstrap'
 
-const BeastShow = ({ beasts,deleteBeast }) => {
+const BeastShow = ({ beasts, deleteBeast }) => {
   const navigate = useNavigate()
 
-  // Check if beast is good ? use the beast : redirect to not found
   let { id } = useParams()
-  
-  if (-1 === beasts.find((beast) => beast.id === +id)){navigate('/notfound')} 
-  
 
- 
-  const [currentBeast,setCurrentBeast] = useState(beasts.find((beast) => beast.id === +id))
+  // Confirms that the beast with the param id exists
+  if (-1 === beasts.find((beast) => beast.id === +id)) { navigate('/notfound') }
+
+  const [currentBeast, setCurrentBeast] = useState(beasts.find((beast) => beast.id === +id))
   const [activeIndex, setActiveIndex] = useState(beasts.findIndex((beast) => beast.id === +id))
   const [animating, setAnimating] = useState(false)
-  const [showModal,setShowModal] = useState(false)
-  const [confirmDelete,setConfirmDelete] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(false) // Pending implementation of a modal to confirm delete
 
   const next = () => {
     if (animating) return
@@ -52,13 +50,10 @@ const BeastShow = ({ beasts,deleteBeast }) => {
 
   const eliminateBeast = () => {
     // setShowModal(true)
-  
-      deleteBeast(currentBeast.id)
-      navigate('/beastindex')
-   
+
+    deleteBeast(currentBeast.id)
+    navigate('/beastindex')
   }
-
-
 
   const slides = beasts?.map((beast) => {
     return (
@@ -75,8 +70,8 @@ const BeastShow = ({ beasts,deleteBeast }) => {
       </CarouselItem>
     )
   })
-  
-    return (
+
+  return (
     <>
       <div className='content'>
         <h2>Meet your beast</h2>
@@ -105,14 +100,15 @@ const BeastShow = ({ beasts,deleteBeast }) => {
           />
         </Carousel>
         <div className='showMutateButton'>
-        <Button onClick={mutateBeast}>
-          Mutate
-        </Button>
-        <Button onClick={eliminateBeast}>
-          Eliminate
-        </Button>
+          <Button onClick={mutateBeast}>
+            Mutate
+          </Button>
+          <Button onClick={eliminateBeast}>
+            Eliminate
+          </Button>
         </div>
       </div>
+      {/* Conditional rendering of a ModalComponent - does not function/pending update */}
       {<ModalComponent
         beastName={currentBeast.name}
         showModal={showModal}

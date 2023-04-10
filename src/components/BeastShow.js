@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ModalComponent from './ModalComponent'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
   Carousel,
@@ -6,38 +7,52 @@ import {
   CarouselControl,
   CarouselIndicators,
   CarouselCaption,
-  Button
+  Button,
 } from 'reactstrap'
 
-const BeastShow = ({ beasts }) => {
+const BeastShow = ({ beasts, deleteBeast }) => {
   const navigate = useNavigate()
 
-  // Check if beast is good ? use the beast : redirect to not found
-  const { id } = useParams()
-  let currentBeast = -1 === beasts.find((beast) => beast.id === +id) ? navigate('/notfound') : beasts.find((beast) => beast.id === +id)
+  let { id } = useParams()
 
-  const [activeIndex, setActiveIndex] = useState(currentBeast.id - 1)
+  // Confirms that the beast with the param id exists
+  if (-1 === beasts.find((beast) => beast.id === +id)) { navigate('/notfound') }
+
+  const [currentBeast, setCurrentBeast] = useState(beasts.find((beast) => beast.id === +id))
+  const [activeIndex, setActiveIndex] = useState(beasts.findIndex((beast) => beast.id === +id))
   const [animating, setAnimating] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(false) // Pending implementation of a modal to confirm delete
 
   const next = () => {
     if (animating) return
     const nextIndex = activeIndex === beasts.length - 1 ? 0 : activeIndex + 1
     setActiveIndex(nextIndex)
+    setCurrentBeast(beasts[nextIndex])
   }
 
   const previous = () => {
     if (animating) return
     const nextIndex = activeIndex === 0 ? beasts.length - 1 : activeIndex - 1
     setActiveIndex(nextIndex)
+    setCurrentBeast(beasts[nextIndex])
   }
 
   const goToIndex = (newIndex) => {
     if (animating) return
     setActiveIndex(newIndex)
+    setCurrentBeast(beasts[newIndex])
   }
 
   const mutateBeast = (e) => {
-    navigate(`/beastedit/${activeIndex + 1}`)
+    navigate(`/beastedit/${beasts[activeIndex].id}`)
+  }
+
+  const eliminateBeast = () => {
+    // setShowModal(true)
+
+    deleteBeast(currentBeast.id)
+    navigate('/beastindex')
   }
 
   const slides = beasts?.map((beast) => {
@@ -85,11 +100,21 @@ const BeastShow = ({ beasts }) => {
           />
         </Carousel>
         <div className='showMutateButton'>
-        <Button onClick={mutateBeast}>
-          Mutate
-        </Button>
+          <Button onClick={mutateBeast}>
+            Mutate
+          </Button>
+          <Button onClick={eliminateBeast}>
+            Eliminate
+          </Button>
         </div>
       </div>
+      {/* Conditional rendering of a ModalComponent - does not function/pending update */}
+      {<ModalComponent
+        beastName={currentBeast.name}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        setConfirmDelete={setConfirmDelete}
+      /> && showModal}
     </>
   )
 }

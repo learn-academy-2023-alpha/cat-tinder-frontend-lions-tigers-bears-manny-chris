@@ -19,7 +19,6 @@ const BeastIndex = ({ beasts }) => {
         <h2>Meet your beast</h2>
         <div className='cardViewer'>
           {beasts.map((beast, index) => {
-            console.log({ index: beast })
             return (
               <Card style={{ width: '18rem' }} key={index}>
                 <img

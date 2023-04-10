@@ -3,7 +3,7 @@ import { FormGroup,Label,Form,Col,Input,FormText,Button } from 'reactstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const BeastEdit = ({editBeast, beasts}) => {
-  const { id } = useParams()
+  let { id } = useParams()
   let currentBeast = -1 === beasts.find((beast) => beast.id === +id) ? navigate('/notfound') : beasts.find((beast) => beast.id === +id)
 
   const navigate = useNavigate()
@@ -22,8 +22,8 @@ const BeastEdit = ({editBeast, beasts}) => {
   const handleSubmit = () => {
    if (newBeast.name === "" || newBeast.age === "" || newBeast.description === "" || newBeast.image === "") {
     window.alert("Please fill out the form")
-  } else {  
-    editBeast(newBeast)
+  } else {
+    editBeast(newBeast,id)
     navigate('/beastindex')}
   }
 

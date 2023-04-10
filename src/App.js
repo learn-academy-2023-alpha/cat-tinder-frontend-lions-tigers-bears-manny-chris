@@ -10,6 +10,7 @@ import NotFound from './components/NotFound'
 import './App.css'
 import { Routes, Route } from "react-router-dom"
 
+
 const App = () => {
   const [beasts, setBeasts] = useState([])
 
@@ -22,7 +23,6 @@ const App = () => {
       .then((response) => response.json())
       .then((payload) => {
         setBeasts(payload)
-        console.log({fetch: payload})
       })
       .catch((error) => console.log(error))
   }
@@ -43,8 +43,31 @@ const App = () => {
       .catch((errors) => console.log("Spawning errors:", errors))
   }
 
-  const editBeast = (beast) => {
-    console.log(beast)
+  const editBeast = (beast, id) => {
+    fetch(`http://localhost:3000/beasts/${id}`, {
+      // converting an object to a string
+      body: JSON.stringify(beast),
+      // specify the info being sent in JSON and the info returning should be JSON
+      headers: {
+        "Content-Type": "application/json"
+      },
+      // HTTP verb so the correct endpoint is invoked on the server
+      method: "PATCH"
+    })
+      .then((response) => response.json())
+      .then((payload) => readBeast())
+      .catch((errors) => console.log("Beast update errors:", errors))
+  }
+  const deleteBeast = (id) => {
+    fetch(`http://localhost:3000/beasts/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+      .then((response) => response.json())
+      .then((payload) => readBeast())
+      .catch((errors) => console.log("delete errors:", errors))
   }
 
   return (
@@ -54,7 +77,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/beastindex" element={<BeastIndex beasts={beasts} />} />
-          <Route path="/beastshow/:id" element={<BeastShow beasts={beasts} />} />
+          <Route path="/beastshow/:id" element={<BeastShow beasts={beasts} deleteBeast={deleteBeast} />} />
           <Route path="/beastnew" element={<BeastNew createBeast={createBeast} />} />
           <Route path="/beastedit/:id" element={<BeastEdit editBeast={editBeast} beasts={beasts}/>} />
           <Route path="*" element={<NotFound />} />

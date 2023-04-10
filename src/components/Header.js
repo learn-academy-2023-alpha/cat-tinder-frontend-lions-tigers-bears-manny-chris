@@ -37,9 +37,6 @@ const Header = () => {
             <NavItem>
               <NavLink href="/beastnew">Expand</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="/beastedit">Sharpen</NavLink>
-            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
